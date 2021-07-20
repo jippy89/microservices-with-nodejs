@@ -1,4 +1,4 @@
-# Step 1: Build this file
+# Step 2: Push to Docker Hub
 FROM node:14-alpine
 
 WORKDIR /app
