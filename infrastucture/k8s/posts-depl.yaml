@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-clusterip-srv # This has to be differentiated, because `posts-srv` is already used for NodePort service.
+  name: posts-clusterip-srv # This name is used to connect to our "posts" service. uRL -> http://posts-clusterip-srv:4000/posts
 spec:
   type: ClusterIP
   selector:

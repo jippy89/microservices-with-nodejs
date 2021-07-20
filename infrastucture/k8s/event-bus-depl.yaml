@@ -23,7 +23,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: event-bus-srv
+  name: event-bus-srv # This name is used to connect to our "event-bus" service. uRL -> http://event-bus-srv:4000/events
 spec:
   type: ClusterIP
   selector:
