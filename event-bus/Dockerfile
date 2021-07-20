@@ -1,3 +1,4 @@
+# Step 1: Build this file
 FROM node:14-alpine
 
 WORKDIR /app
