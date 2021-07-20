@@ -1,0 +1,20 @@
+# Step 3: Create config file
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus-depl
+spec:
+  replicas: 1
+
+  # This is related to the 'template'
+  selector:
+    matchLabels:
+      app: event-bus
+  template:
+    metadata:
+      labels:
+        app: event-bus
+    spec:
+      containers:
+        - name: event-bus
+          image: irfandyjip89/microservices_event-bus

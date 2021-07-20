@@ -1,4 +1,3 @@
-# Step 2: Push to Docker Hub
 FROM node:14-alpine
 
 WORKDIR /app
