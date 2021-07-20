@@ -17,4 +17,4 @@ spec:
     spec:
       containers:
         - name: posts
-          image: microservices/posts
+          image: irfandyjip89/microservices_posts
