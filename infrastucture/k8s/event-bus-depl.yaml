@@ -20,9 +20,6 @@ spec:
         - name: event-bus
           image: irfandyjip89/microservices_event-bus
 ---
-# Step 6: Rerun `kubectl apply -f event-bus-depl.yaml`
-# Since we're creating the "service" config file in the same file.
-# Check out `kubectl get services` to make sure it's run correctly.
 apiVersion: v1
 kind: Service
 metadata:

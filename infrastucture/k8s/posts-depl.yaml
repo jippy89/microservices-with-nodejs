@@ -18,3 +18,17 @@ spec:
       containers:
         - name: posts
           image: irfandyjip89/microservices_posts
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip-srv # This has to be differentiated, because `posts-srv` is already used for NodePort service.
+spec:
+  type: ClusterIP
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
