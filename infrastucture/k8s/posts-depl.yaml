@@ -1,4 +1,4 @@
-# Creating "Deployment" object
+# Step 5: Rerun `kubectl rollout restart deployment posts-depl`
 apiVersion: apps/v1
 kind: Deployment
 metadata:
