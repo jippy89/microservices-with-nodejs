@@ -1,4 +1,5 @@
-# Step 3: Create config file
+# Step 4: Run `kubectl apply -f event-bus-depl.yaml`
+# Check if the `event-bus-depl` already exist with `kubectl get deployments` or `kubectl get pods`
 apiVersion: apps/v1
 kind: Deployment
 metadata:
