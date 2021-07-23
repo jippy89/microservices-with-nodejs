@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moderation-depl
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: moderation
+  template:
+    metadata:
+      labels:
+        app: moderation
+    spec:
+      containers:
+        - name: moderation
+          image: irfandyjip89/microservices_moderation
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: moderation-srv # This name is used to connect to our "moderation" service. uRL -> http://moderation-srv:4000/events
+spec:
+  type: ClusterIP
+  selector:
+    app: moderation
+  ports:
+    - name: moderation
+      protocol: TCP
+      port: 4003
+      targetPort: 4003
