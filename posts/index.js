@@ -22,12 +22,19 @@ app.post('/posts', async (req, res) => {
     title
   };
 
-  await axios.post('http://posts-clusterip-srv:4005/events', {
+  const eventBody = {
     type: 'PostCreated',
     data: {
       ...posts[id]
     }
-  })
+  }
+
+  await axios.post('http://event-bus-srv:4005/events', eventBody)
+    .catch(err => {
+      console.log('Requesting to event endpoint failed')
+      console.log(eventBody)
+      console.error(err)
+    })
 
   res.status(201).send(posts[id]);
 });
