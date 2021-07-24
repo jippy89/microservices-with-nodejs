@@ -1,0 +1,68 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  # Tells Skaffold that there's multiple configuration files in 'infrastructure/k8s/'
+  # 1. Will watch and reapply to Kubernetes clusters
+  # 2. Making sure that all the object is running when Skaffold is up
+  #    Including deletion of the object when Skaffold is stopped.
+  kubectl:
+    manifests:
+      - ./infrastructure/k8s/*
+build:
+  local:
+    # By default Skaffold makes changes whenever image is rebuild and it will try to push it to "Docker Hub"
+    # It's not required for this lesson, so it's going to be disabled
+    push: false
+  artifacts: # Tells Skaffold that there's some things to maintain and update the pod
+    - image: irfandyjip89/microservices_client # The image that is going to be rebuild
+      context: client # Telling where the folder to watch, also the source of the image
+      docker:
+        dockerfile: Dockerfile 
+      sync:
+        manual:
+        # There are two ways of Skaffold going to update our pod
+        # 1. If it matches what's here it will directly throw that file to the pod
+        # 2. If it's not it will rebuild the whole image
+        # Example: Downloading a new package, technically even in the Docker it will rebuild too. But for the sake of explanation
+          - src: 'src/**/*.js' # Tells Skaffold to watch for Javascript files
+            dest: .
+    - image: irfandyjip89/microservices_comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile 
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: irfandyjip89/microservices_event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile 
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: irfandyjip89/microservices_moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile 
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: irfandyjip89/microservices_posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile 
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: irfandyjip89/microservices_query
+      context: query
+      docker:
+        dockerfile: Dockerfile 
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
