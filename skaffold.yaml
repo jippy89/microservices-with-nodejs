@@ -7,7 +7,7 @@ deploy:
   #    Including deletion of the object when Skaffold is stopped.
   kubectl:
     manifests:
-      - ./infrastructure/k8s/*
+      - ./infrastucture/k8s/*
 build:
   local:
     # By default Skaffold makes changes whenever image is rebuild and it will try to push it to "Docker Hub"
