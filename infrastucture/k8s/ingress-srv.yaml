@@ -6,12 +6,25 @@ metadata:
   name: ingress-srv
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true' # This is for '/posts/?(.*)/comments' to work.
 spec:
   rules:
     - host: posts.com
       http:
         paths:
-          - path: /posts
+          - path: /posts/create
             backend:
               serviceName: posts-clusterip-srv
               servicePort: 4000
+          - path: /posts
+            backend:
+              serviceName: query-srv
+              servicePort: 4002
+          - path: /posts/?(.*)/comments
+            backend:
+              serviceName: comments-srv
+              servicePort: 4001
+          - path: /?(.*) # This means all routes, so React can serve it, make sure it's on the bottom, since `paths` have priorities from top to bottom, just like any router.
+            backend:
+              serviceName: client-srv
+              servicePort: 3000
