@@ -1,0 +1,2 @@
+# First install `ingress-nginx`
+# Installation steps https://kubernetes.github.io/ingress-nginx/deploy/#provider-specific-steps
